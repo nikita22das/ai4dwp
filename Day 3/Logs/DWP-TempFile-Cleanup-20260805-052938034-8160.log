@@ -1,0 +1,3 @@
+2026-08-05 05:29:38 [INFO] Starting rollback using manifest: C:\Users\labuser\Documents\Training\Day 3\RollbackStore\Batch-20260805-052907149-8160\RollbackManifest.csv
+2026-08-05 05:29:38 [INFO] Restored file: C:\Users\labuser\Documents\Training\Day 3\RollbackStore\Batch-20260805-052907149-8160\C__Users_labuser_AppData_Local_Temp_2_DWP-Rollback-Test\testfile.txt -> C:\Users\labuser\AppData\Local\Temp\2\DWP-Rollback-Test\testfile.txt
+2026-08-05 05:29:38 [INFO] Log file saved to: C:\Users\labuser\Documents\Training\Day 3\Logs\DWP-TempFile-Cleanup-20260805-052938034-8160.log

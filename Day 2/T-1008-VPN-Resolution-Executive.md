@@ -1,0 +1,2 @@
+Executive:
+Your access and information are safe, and there was no data loss. After the Windows 11 upgrade, the old secure access app was removed, and the new one was not reinstalled automatically because an automatic check missed it. We removed old settings, forced the device to check in, installed the new app, applied the correct network routing settings, and confirmed access to all internal networks. You do not need to do anything.

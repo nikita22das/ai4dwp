@@ -1,0 +1,4 @@
+2026-08-05 05:07:05 [INFO] Starting DryRun. OlderThanDays=1. Cutoff=8/4/2026 5:07:05 AM
+2026-08-05 05:07:05 [INFO] Scanning path: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-DryRun
+2026-08-05 05:07:05 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-DryRun\old.txt
+2026-08-05 05:07:05 [INFO] Log file saved to: C:\Users\labuser\Documents\Training\Day 3\Logs\DWP-TempFile-Cleanup-20260805-050705.log

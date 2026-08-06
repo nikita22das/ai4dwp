@@ -1,0 +1,4 @@
+2026-08-05 06:23:59 [INFO] Starting DryRun. OlderThanDays=3. Cutoff=8/2/2026 6:23:59 AM
+2026-08-05 06:23:59 [INFO] Skipping log with recent events newer than cutoff: Application
+2026-08-05 06:23:59 [INFO] Skipping log with recent events newer than cutoff: System
+2026-08-05 06:23:59 [INFO] Log file saved to: C:\Users\labuser\Documents\Training\Day 3\Logs\DWP-EventLog-Archive-Cleanup-20260805-062359405-7076.log

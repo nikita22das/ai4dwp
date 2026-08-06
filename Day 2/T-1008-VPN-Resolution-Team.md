@@ -1,0 +1,2 @@
+Team:
+A recent Windows 11 update removed the old secure access app and, because an automatic check missed it, the replacement app did not install on its own. We removed old app settings, forced a device check-in, installed the new app, applied the correct network routing settings, and confirmed access to all internal networks. Your data is safe and there was no data loss. If you see the same issue, contact the Service Desk.

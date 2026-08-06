@@ -1,0 +1,5 @@
+2026-08-05 05:29:07 [INFO] Starting Cleanup. OlderThanDays=1. Cutoff=8/4/2026 5:29:07 AM
+2026-08-05 05:29:07 [INFO] Scanning path: C:\Users\labuser\AppData\Local\Temp\2\DWP-Rollback-Test
+2026-08-05 05:29:07 [INFO] Staged file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Rollback-Test\testfile.txt -> C:\Users\labuser\Documents\Training\Day 3\RollbackStore\Batch-20260805-052907149-8160\C__Users_labuser_AppData_Local_Temp_2_DWP-Rollback-Test\testfile.txt
+2026-08-05 05:29:07 [INFO] Log file saved to: C:\Users\labuser\Documents\Training\Day 3\Logs\DWP-TempFile-Cleanup-20260805-052907149-8160.log
+2026-08-05 05:29:07 [INFO] Rollback manifest saved to: C:\Users\labuser\Documents\Training\Day 3\RollbackStore\Batch-20260805-052907149-8160\RollbackManifest.csv

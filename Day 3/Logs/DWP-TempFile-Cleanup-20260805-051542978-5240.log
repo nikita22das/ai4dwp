@@ -1,0 +1,15 @@
+2026-08-05 05:15:43 [INFO] Starting DryRun. OlderThanDays=0. Cutoff=8/5/2026 5:15:43 AM
+2026-08-05 05:15:43 [INFO] Scanning path: C:\Users\labuser\AppData\Local\Temp\2
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\08977e2f-e97a-4173-85ee-a5bee3ad13cd.tmp
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\9ca9b718-eea7-41d8-9238-954300dbf3bd.tmp
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\b9c9ee06-8191-4f5b-a082-2ea3fd8fa352.tmp
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\cv_debug.log
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-DryRun\new.txt
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-DryRun\old.txt
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-Execute\locked.txt
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-Execute\movable.txt
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\DWP-Cleanup-Test-UniqueLogs\old.txt
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\gen_py\3.9\dicts.dat
+2026-08-05 05:15:43 [INFO] DRY-RUN would stage file: C:\Users\labuser\AppData\Local\Temp\2\gen_py\3.9\__init__.py
+2026-08-05 05:15:43 [INFO] Scanning path: C:\Windows\Temp
+2026-08-05 05:15:43 [INFO] Log file saved to: C:\Users\labuser\Documents\Training\Day 3\Logs\DWP-TempFile-Cleanup-20260805-051542978-5240.log
