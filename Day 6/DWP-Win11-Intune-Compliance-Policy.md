@@ -35,6 +35,28 @@ Intune queries the Windows Health Attestation Service (HAS) to confirm the OS dr
 **Recommendation:**  
 Pair this with a **BitLocker configuration profile** (Endpoint Security → Disk Encryption) to silently enforce BitLocker before compliance is evaluated. The 7-day grace period absorbs the HAS sync delay on new enrolments.
 
+**Validation Steps — After Policy Sync:**
+
+*Where to check compliance status:*  
+- **From the device:** Intune admin center → Devices → All devices → [device] → **Device compliance** → select this policy → per-setting results are listed individually.  
+- **From the policy:** Devices → Compliance policies → [this policy] → **Device status** → [device] → same per-setting view.
+
+*Compliance state and Conditional Access impact:*
+
+| State | Meaning | Conditional Access effect |
+|---|---|---|
+| **Compliant** | All settings met; HAS confirmed device health | Access to CA-protected resources is permitted |
+| **Not compliant** | One or more settings not met AND grace period has expired | Access blocked; user sees "Device is not compliant" error |
+| **In grace period** | Setting(s) not met but within the 7-day grace window | Access still permitted; grace clock starts at first non-compliance detection, not enrolment |
+
+*If the device shows non-compliant on BitLocker despite BitLocker being enabled:*
+
+| Cause | Why it happens | Fastest check |
+|---|---|---|
+| **HAS report not yet synced** | Health Attestation Service report has not been submitted or processed — common on newly enrolled or upgraded devices (up to 24 h delay) | Intune → device → **Hardware** tab → check HAS report timestamp. If absent or stale, trigger a manual sync: Intune → device → **Sync** and wait up to 24 hours |
+| **Encryption still in progress** | Intune/HAS will not confirm BitLocker until the volume is 100% encrypted, not just encryption-started | On the device run `manage-bde -status C:` — if **Percentage Encrypted** is below 100% or status shows *Encryption In Progress*, wait for completion before re-evaluating |
+| **BitLocker enforced via SCCM, not Intune** | Legacy SCCM-managed BitLocker does not configure the device to report encryption state to HAS; Intune receives no confirmation | Intune → Devices → Monitor → **Encryption report** — if device shows *Not ready* or *Profile state: Error* while `manage-bde` confirms encryption, HAS pipeline is broken. Fix: deploy a BitLocker configuration profile via Intune (Endpoint security → Disk Encryption) to take ownership and establish HAS reporting |
+
 ---
 
 ## Requirement 2 – Secure Boot Must Be Enabled
@@ -150,19 +172,21 @@ Exclude kiosk and shared-device groups from this compliance policy and apply a s
 
 ---
 
-## Requirement 7 – Device Must Not Be Jailbroken or Rooted
+## Requirement 7 – Device Integrity Must Not Be Compromised
+
+> **Note:** The terms "jailbroken" and "rooted" are mobile platform concepts (iOS and Android respectively) and do not apply to Windows. On Windows 11, the equivalent control is enforcement of **device integrity** — detecting tampered security controls, suspicious boot-chain activity, or active threat presence — via the mechanisms below.
 
 | Field | Detail |
 |---|---|
 | **Setting Name** | Require the device to be at or under the machine risk score |
-| **Value** | Low (or alternatively: use "Jailbroken" toggle where visible) |
+| **Value** | Low |
 | **Intune UI Path (MDE integrated)** | Devices → Compliance policies → [Policy] → **Microsoft Defender for Endpoint** → Require the device to be at or under the machine risk score → **Low** |
-| **Intune UI Path (basic)** | Devices → Compliance policies → [Policy] → **Device Health** → Rooted devices → **Block** |
+| **Intune UI Path (basic)** | Devices → Compliance policies → [Policy] → **Device Health** → Code integrity → **Require** |
 
 **Effect:**  
-On Windows 11, "jailbroken/rooted" is not a native concept as it is on mobile platforms. The nearest equivalent enforced via Intune is:  
-- **MDE risk score:** Flags devices where Defender for Endpoint has detected active threats, tampered security controls, or suspicious boot-chain activity (analogous to a compromised/rooted state).  
-- **Device Health / Rooted:** On Windows this primarily validates via the Health Attestation Service and Code Integrity checks.
+Windows 11 device integrity is enforced via two mechanisms:  
+- **MDE risk score:** Flags devices where Defender for Endpoint has detected active threats, tampered security controls, or suspicious boot-chain activity. Setting this to **Low** ensures only clean, uncompromised devices are compliant.  
+- **Code Integrity (Device Health):** Validates via the Windows Health Attestation Service that kernel-level code integrity (HVCI / Windows Defender Credential Guard) is active and that the boot chain has not been tampered with. This is the closest Windows-native equivalent to the integrity checks performed on mobile platforms.
 
 **False-Positive Risk:**  
 - Penetration testing tools (e.g. Metasploit, Sysinternals with unsigned drivers) present on developer or security-team machines may trigger MDE risk elevation.  
@@ -186,7 +210,7 @@ Use the **MDE risk score connector** (set to "Low") rather than relying solely o
 | 4 | Defender real-time protection | Require real-time protection | Require | 7 days |
 | 5 | Firewall – all profiles | Windows Firewall (Domain/Private/Public) | Require | 7 days |
 | 6 | PIN or password configured | Require password to unlock | Require | 7 days |
-| 7 | Not jailbroken/rooted | MDE Machine Risk Score | Low | 7 days |
+| 7 | Device integrity not compromised | MDE Machine Risk Score | Low | 7 days |
 
 ---
 
@@ -197,7 +221,7 @@ Use the **MDE risk score connector** (set to "Low") rather than relying solely o
 | Secure Boot | Medium | New compliance policy experience may reorganise Device Health section |
 | Defender RTP | Medium | Label may show "Microsoft Defender Antivirus" vs "Windows Defender Antimalware" |
 | Password / PIN | Medium | Label differs between PC and mobile policy views; underlying CSP unchanged |
-| Rooted / MDE Risk Score | High | Requires active MDE connector; UI path changes with connector version and licensing |
+| Device Integrity / MDE Risk Score | High | Requires active MDE connector; UI path changes with connector version and licensing |
 
 **Recommended action:** Before deploying, walk through each setting in your tenant's Intune admin center at [https://intune.microsoft.com](https://intune.microsoft.com) and confirm the current label and path matches the above. Microsoft updates the Intune UI frequently; the CSP values are stable but the UI navigation can shift between releases.
 
