@@ -9,7 +9,7 @@ Scope Note:
 - No logs, exports, telemetry, or endpoint snapshots are yet available.
 - Facts and assumptions are separated explicitly below.
 
-SECTION 1 - Incident Separation
+Incident Separation
 
 Track 1: Potential Unauthorized Copilot Data Exposure
 - Incident Name: Copilot returned a client matter a user reports never having access to.
@@ -47,7 +47,7 @@ Track 4: Friday Floor 6 Document Management App Rollout - Change Correlation Tra
 - Assumption (unverified): Temporal proximity may be coincidental.
 - Missing evidence: Change ticket scope, deployment success/failure rates, detection/install states, policy payloads, and post-deploy incident timing.
 
-SECTION 2 - First 30 Minute Triage Plan (Ranked by Urgency)
+First 30 Minute Triage Plan (Ranked by Urgency)
 
 Priority 1 - Track 1: Potential Unauthorized Copilot Data Exposure
 - Why highest priority: Potential confidentiality/security incident. Even one valid exposure can have disproportionate legal and reputational impact.
@@ -82,7 +82,7 @@ Prioritization Reasoning Summary (Fact vs Assumption):
 - Assumption-controlled: Change rollout (Track 4) is investigated as correlation only; no causation assumed.
 - Dynamic rule: Track 3 can move up if new evidence shows widespread impact or linkage to critical workflows.
 
-SECTION 3 - Evidence Collection Plan by Track
+Evidence Collection Plan by Track
 
 Track 1 - Potential Unauthorized Copilot Data Exposure
 - Data Sources: User statement capture, matter metadata, document library ownership records, service desk ticket timeline.
@@ -118,7 +118,7 @@ Evidence Gaps (All Tracks):
 - No raw logs or screenshots preserved yet.
 - No confirmed blast radius outside Floor 6.
 
-SECTION 4 - First-Hour Manager Update (Non-Technical)
+First-Hour Manager Update
 
 We have separated the morning report into four parallel triage tracks: (1) potential Copilot confidentiality exposure, (2) multi-user login failure/slow login, (3) missing desktop shortcuts, and (4) a neutral assessment of Friday's document-management rollout as a possible correlation only.
 
